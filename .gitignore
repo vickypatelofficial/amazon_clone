@@ -1,0 +1,13 @@
+.build/
+.dart_tool/
+.packages
+.pub/
+.idea/
+.vscode/
+android/.gradle/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+**/google-services.json
+**/GoogleService-Info.plist
+build/
+
