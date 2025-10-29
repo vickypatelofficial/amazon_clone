@@ -78,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
 
               SizedBox(height: screenWidth * 0.08),
 
-              _menu(
+              listTile(
                 icon: Icons.person_outline,
                 title: "Edit Profile",
                 onTap: () => Navigator.push(
@@ -86,7 +86,7 @@ class ProfileScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => const UpdateProfileScreen()),
                 ),
               ),
-              _menu(
+              listTile(
                 icon: Icons.favorite_border,
                 title: "Wishlist",
                 onTap: () => Navigator.push(
@@ -94,12 +94,12 @@ class ProfileScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => const WishlistScreen()),
                 ),
               ),
-              _menu(
+              listTile(
                 icon: Icons.shopping_bag_outlined,
                 title: "My Orders",
                 onTap: () {},
               ),
-              _menu(
+              listTile(
                 icon: Icons.language,
                 title: "Language",
                 onTap: () {},
@@ -107,7 +107,7 @@ class ProfileScreen extends StatelessWidget {
 
               Divider(height: screenWidth * 0.12),
 
-              _menu(
+              listTile(
                 icon: Icons.logout,
                 title: "Logout",
                 color: Colors.red,
@@ -128,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _menu({
+  Widget listTile({
     required IconData icon,
     required String title,
     Color? color,
