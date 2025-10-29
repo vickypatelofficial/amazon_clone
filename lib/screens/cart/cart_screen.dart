@@ -11,7 +11,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = context.watch<CartProvider>();
-    final catalog = context.watch<ProductProvider>().productMap; // pid → ProductModel
+    final catalog = context.watch<ProductProvider>().productMap;  
 
     final isEmpty = cart.items.isEmpty;
     final width = MediaQuery.of(context).size.width;
@@ -107,7 +107,7 @@ class CartScreen extends StatelessWidget {
                 //     total: total.toStringAsFixed(0),
                 //     text: "Continue",
                 //     onPressed: () {
-                //       // TODO -> Checkout Screen
+                //      
                 //     },
                 //   ),
                 // ),

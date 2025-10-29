@@ -34,15 +34,13 @@ class CategoryCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Stack(
-            children: [
-              // Background Image
+            children: [ 
               Positioned.fill(
                 child: CustomNetworkImage(
                   imageUrl: imageUrl,
                   fit: BoxFit.cover,
                 ),
               ),
-              // Gradient Overlay
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
@@ -57,8 +55,7 @@ class CategoryCard extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-              // Category Name
+              ), 
               Positioned(
                 bottom: 12,
                 left: 12,
