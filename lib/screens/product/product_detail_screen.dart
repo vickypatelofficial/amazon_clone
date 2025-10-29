@@ -37,7 +37,6 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Product Image
             Center(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(18),
@@ -54,7 +53,6 @@ class ProductDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Name
             Text(
               product.name,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -65,7 +63,6 @@ class ProductDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 6),
 
-            // Category
             Text(
               "Category: ${product.category}",
               style: const TextStyle(
@@ -77,7 +74,6 @@ class ProductDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            // Price
             Text(
               "₹${product.price.toStringAsFixed(2)}",
               style: const TextStyle(
@@ -89,7 +85,6 @@ class ProductDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 18),
 
-            // Description
             Text(
               product.description,
               style: const TextStyle(
@@ -112,7 +107,7 @@ class ProductDetailScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => BottomNavScreen()),
-                          (route) => false, // removes everything
+                          (route) => false, 
                         );
                       } else {
                         await cart.addItem(product);
@@ -165,13 +160,12 @@ class ProductDetailScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context)
-                        .primaryColor, // <-- small primary touch
+                        .primaryColor, 
                   ),
             ),
 
             const SizedBox(height: 10),
 
-// Reviews List
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -180,12 +174,12 @@ class ProductDetailScreen extends StatelessWidget {
                 leading: CircleAvatar(
                   backgroundColor: Theme.of(context)
                       .primaryColor
-                      .withOpacity(0.15), // Light tone
+                      .withOpacity(0.15), 
                   child: Text(
                     "U${i + 1}",
                     style: TextStyle(
                       color:
-                          Theme.of(context).primaryColor, // Text primary color
+                          Theme.of(context).primaryColor, 
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -193,7 +187,7 @@ class ProductDetailScreen extends StatelessWidget {
                 title: Text(
                   "User ${i + 1}",
                   style: TextStyle(
-                    color: Theme.of(context).primaryColor, // subtle highlight
+                    color: Theme.of(context).primaryColor, 
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -202,7 +196,7 @@ class ProductDetailScreen extends StatelessWidget {
               separatorBuilder: (_, __) => Divider(
                 color: Theme.of(context)
                     .primaryColor
-                    .withOpacity(0.2), // Light divider
+                    .withOpacity(0.2), 
               ),
             ),
           ],

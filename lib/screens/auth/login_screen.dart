@@ -64,8 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   const SizedBox(height: 16),
-
-                  /// ✅ Password Field
+ 
                   TextFormField(
                     controller: _passCtrl,
                     decoration: appInput("Password", Icons.lock),
@@ -81,8 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   const SizedBox(height: 30),
-
-                  /// ✅ Login Button
+ 
                   SizedBox(
                     width: double.infinity,
                     height: 48,
@@ -114,8 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-
-                  /// ✅ Register Button
+ 
                   TextButton(
                     onPressed: auth.isLoading
                         ? null
@@ -143,9 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-          ),
-
-          /// ✅ Loading Overlay
+          ), 
           if (auth.isLoading)
             Container(
               color: Colors.black.withOpacity(0.25),

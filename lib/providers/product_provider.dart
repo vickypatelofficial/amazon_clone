@@ -21,15 +21,13 @@ class ProductProvider extends ChangeNotifier {
 
     final snap = await _db.collection('products').get();
     products = snap.docs.map((d) => ProductModel.fromMap(d.id, d.data())).toList();
-
-    /// Set filtered list = all products initially
+ 
     filteredProducts = List.from(products);
 
     isLoading = false;
     notifyListeners();
   }
-
-  /// ✅ Search Logic for Stateless Screen
+ 
   void search(String q) {
     query = q.toLowerCase();
 
@@ -44,32 +42,31 @@ class ProductProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+ 
+  // Future<void> addDummyProductsIfNeeded() async {
+  //   final productsSnapshot = await _db.collection('products').get();
+  //   if (productsSnapshot.docs.isNotEmpty) return;
 
-  /// Add dummy products once if collection was empty
-  Future<void> addDummyProductsIfNeeded() async {
-    final productsSnapshot = await _db.collection('products').get();
-    if (productsSnapshot.docs.isNotEmpty) return;
+  //   List<ProductModel> dummyProducts = List.generate(20, (index) {
+  //     return ProductModel(
+  //       id: '$index',
+  //       name: "Sample Product ${index + 1}",
+  //       description: "This is the description of Sample Product ${index + 1}.",
+  //       price: (index + 1) * 99,
+  //       category: index % 2 == 0 ? "Electronics" : "Fashion",
+  //       imageUrl: "https://picsum.photos/200?random=$index",
+  //     );
+  //   });
 
-    List<ProductModel> dummyProducts = List.generate(20, (index) {
-      return ProductModel(
-        id: '$index',
-        name: "Sample Product ${index + 1}",
-        description: "This is the description of Sample Product ${index + 1}.",
-        price: (index + 1) * 99,
-        category: index % 2 == 0 ? "Electronics" : "Fashion",
-        imageUrl: "https://picsum.photos/200?random=$index",
-      );
-    });
+  //   WriteBatch batch = _db.batch();
+  //   for (var product in dummyProducts) {
+  //     DocumentReference docRef = _db.collection('products').doc();
+  //     batch.set(docRef, product.toMap());
+  //   }
+  //   await batch.commit();
 
-    WriteBatch batch = _db.batch();
-    for (var product in dummyProducts) {
-      DocumentReference docRef = _db.collection('products').doc();
-      batch.set(docRef, product.toMap());
-    }
-    await batch.commit();
-
-    fetchProducts(); // refresh UI
-  }
+  //   fetchProducts(); // refresh UI
+  // }
 
  
 

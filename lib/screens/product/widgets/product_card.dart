@@ -52,13 +52,11 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ✅ Image with Heart Button (Stack)
             SizedBox(
               height: imageHeight,
               width: double.infinity,
               child: Stack(
                 children: [
-                  // Product Image
                   ClipRRect(
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(borderRadius),
@@ -92,7 +90,6 @@ class ProductCard extends StatelessWidget {
               ),
             ),
 
-            // ✅ Text Section
             Expanded(
               child: Padding(
                 padding: EdgeInsets.fromLTRB(
@@ -116,7 +113,6 @@ class ProductCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    // SizedBox(height: screenWidth * 0.008),
                     Text(
                       categoryName,
                       style: TextStyle(
@@ -131,7 +127,6 @@ class ProductCard extends StatelessWidget {
               ),
             ),
 
-            // ✅ Price + Add to Cart
             Padding(
               padding: EdgeInsets.fromLTRB(padding, 0, padding, padding),
               child: Row(

@@ -35,7 +35,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     final prod = Provider.of<ProductProvider>(context);
 
     return Scaffold(
-      backgroundColor: AppColors.white, // same as home background
+      backgroundColor: AppColors.white, 
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         elevation: 0.5,
@@ -59,33 +59,32 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 children: [
                   const SizedBox(height: 14),
 
-                  /// ✅ Grid Like Home (better & clean)
                   GridView.builder(
                     itemCount: categories.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, // ⭐ 2 per row
+                      crossAxisCount: 2, 
                       crossAxisSpacing: 14,
                       mainAxisSpacing: 14,
-                      childAspectRatio: 0.92, // ⭐ Controls card height ratio
+                      childAspectRatio: 0.92, 
                     ),
                     itemBuilder: (_, i) {
-                      final c = categories[i];
-                      final list = prod.byCategory(c);
-                      final img = list.isNotEmpty ? list.first.imageUrl : "";
+                      final category = categories[i];
+                      final list = prod.byCategory(category);
+                      final image = list.isNotEmpty ? list.first.imageUrl : "";
 
                       return CategoryCard(
-                        categoryText: c,
-                        imageUrl: img,
+                        categoryText: category,
+                        imageUrl: image,
                         onPressed: () {
-                          final filtered = prod.byCategory(c);
+                          final filtered = prod.byCategory(category);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (_) => FilteredListScreen(
-                                category: c,
+                                category: category,
                                 items: filtered,
                               ),
                             ),

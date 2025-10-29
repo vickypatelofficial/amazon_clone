@@ -40,7 +40,6 @@ class ProfileScreen extends StatelessWidget {
               vertical: 24,
             ),
             children: [
-              /// ✅ Profile Header
               Row(
                 children: [
                   CircleAvatar(
@@ -79,7 +78,6 @@ class ProfileScreen extends StatelessWidget {
 
               SizedBox(height: screenWidth * 0.08),
 
-              /// ✅ Menu Items
               _menu(
                 icon: Icons.person_outline,
                 title: "Edit Profile",
@@ -109,7 +107,6 @@ class ProfileScreen extends StatelessWidget {
 
               Divider(height: screenWidth * 0.12),
 
-              /// ✅ Logout
               _menu(
                 icon: Icons.logout,
                 title: "Logout",

@@ -5,10 +5,10 @@ import '../models/product_model.dart';
 import 'auth_provider.dart';
 
 class WishlistProvider extends ChangeNotifier {
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final FirebaseFirestore db = FirebaseFirestore.instance;
   AuthProvider? _auth;
 
-  Set<String> wishlist = {}; // productId only
+  Set<String> wishlist = {}; 
   StreamSubscription<DocumentSnapshot>? _sub;
 
   void updateAuth(AuthProvider auth) {
@@ -24,7 +24,7 @@ class WishlistProvider extends ChangeNotifier {
   }
 
   void _listenToRemote(String uid) {
-    final doc = _db.collection('wishlists').doc(uid);
+    final doc = db.collection('wishlists').doc(uid);
 
     _sub = doc.snapshots().listen((snap) {
       if (!snap.exists) return;
@@ -47,7 +47,7 @@ class WishlistProvider extends ChangeNotifier {
 
   Future<void> _saveToRemote() async {
     if (_auth?.user == null) return;
-    final doc = _db.collection('wishlists').doc(_auth!.user!.uid);
+    final doc = db.collection('wishlists').doc(_auth!.user!.uid);
     await doc.set({'items': {for (var id in wishlist) id: true}});
   }
 

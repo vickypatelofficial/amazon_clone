@@ -18,16 +18,10 @@ class HomeScreen extends StatelessWidget {
     final cart = Provider.of<CartProvider>(context, listen: false);
     final productProvider = context.watch<ProductProvider>();
     final wishlist = context.watch<WishlistProvider>();
-    // ✅ Fetch products only first time widget loads
-    // Future.microtask(() {
-    //   if (productProvider.products.isEmpty) {
-    //     productProvider.fetchProducts();
-    //   }
-    // });
 
     return GestureDetector(
       onTap: () =>
-          FocusScope.of(context).unfocus(), // tap outside hide keyboard
+          FocusScope.of(context).unfocus(),
 
       child: Scaffold(
         backgroundColor: AppColors.white,
@@ -45,7 +39,6 @@ class HomeScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            /// ✅ SEARCH BOX
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               child: FocusScope(
@@ -81,7 +74,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            /// ✅ PRODUCTS GRID
             Expanded(
               child: productProvider.isLoading
                   ? Center(child: CircularProgressIndicator())

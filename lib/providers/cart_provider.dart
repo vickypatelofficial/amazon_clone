@@ -7,12 +7,12 @@ import 'auth_provider.dart';
 class CartProvider extends ChangeNotifier {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   AuthProvider? _auth;
-  Map<String, int> items = {}; // productId -> qty
-  StreamSubscription<DocumentSnapshot>? _sub;
+  Map<String, int> items = {};
+  StreamSubscription<DocumentSnapshot>? _subdoc;
 
   void updateAuth(AuthProvider auth) {
     _auth = auth;
-    _sub?.cancel();
+    _subdoc?.cancel();
     if (auth.isAuthenticated) {
       _listenToRemoteCart(auth.user!.uid);
     } else {
@@ -23,7 +23,7 @@ class CartProvider extends ChangeNotifier {
 
   void _listenToRemoteCart(String uid) {
     final doc = _db.collection('carts').doc(uid);
-    _sub = doc.snapshots().listen((snap) {
+    _subdoc = doc.snapshots().listen((snap) {
       if (!snap.exists) return;
       final data = snap.data()!['items'] as Map<String, dynamic>?;
       if (data == null) return;
@@ -45,10 +45,11 @@ class CartProvider extends ChangeNotifier {
   }
 
   Future<void> updateQuantity(String productId, int qty) async {
-    if (qty <= 0)
+    if (qty <= 0) {
       items.remove(productId);
-    else
+    } else {
       items[productId] = qty;
+    }
     notifyListeners();
     await _saveToRemote();
   }
@@ -74,7 +75,7 @@ class CartProvider extends ChangeNotifier {
 
   @override
   void dispose() {
-    _sub?.cancel();
+    _subdoc?.cancel();
     super.dispose();
   }
 }

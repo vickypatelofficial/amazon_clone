@@ -46,9 +46,9 @@ class CartScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       ...cart.items.entries.map((entry) {
-                        final pid = entry.key;
+                        final productId = entry.key;
                         final qty = entry.value;
-                        final product = catalog[pid];
+                        final product = catalog[productId];
 
                         if (product == null) return const SizedBox();
 
@@ -58,15 +58,14 @@ class CartScreen extends StatelessWidget {
                           category: product.category,
                           price: (product.price * qty).toStringAsFixed(0),
                           quantity: qty.toString(),
-                          onIncrease: () => cart.updateQuantity(pid, qty + 1),
-                          onDecrease: () => cart.updateQuantity(pid, qty - 1),
-                          onRemove: () => cart.removeItem(pid),
+                          onIncrease: () => cart.updateQuantity(productId, qty + 1),
+                          onDecrease: () => cart.updateQuantity(productId, qty - 1),
+                          onRemove: () => cart.removeItem(productId),
                         );
                       }).toList(),
 
                       const SizedBox(height: 16),
-
-                      // Summary Box
+ 
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
